@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data;
+using System.Data.Entity;
 
 namespace IMS_Project.Controllers
 {

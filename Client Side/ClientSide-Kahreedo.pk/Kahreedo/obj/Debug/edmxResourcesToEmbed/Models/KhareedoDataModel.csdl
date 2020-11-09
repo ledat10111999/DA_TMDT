@@ -36,7 +36,7 @@
       <PropertyRef Name="CategoryID" />
     </Key>
     <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Picture1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="Picture2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -79,6 +79,7 @@
     <NavigationProperty Name="RecentlyViews" Relationship="Self.FK_RecentlyViews_Customers" FromRole="Customers" ToRole="RecentlyViews" />
     <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Customers" FromRole="Customers" ToRole="Review" />
     <NavigationProperty Name="Wishlists" Relationship="Self.FK_Wishlist_Customers" FromRole="Customers" ToRole="Wishlist" />
+    <Property Name="ConfirmEmail" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="genMainSlider">
     <Key>
@@ -165,8 +166,8 @@
       <PropertyRef Name="PayTypeID" />
     </Key>
     <Property Name="PayTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_PaymentType" FromRole="PaymentType" ToRole="Payment" />
   </EntityType>
   <EntityType Name="Product">
@@ -174,15 +175,15 @@
       <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="SupplierID" Type="Int32" Nullable="false" />
     <Property Name="CategoryID" Type="Int32" Nullable="false" />
     <Property Name="SubCategoryID" Type="Int32" />
     <Property Name="QuantityPerUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="OldPrice" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="UnitInStock" Type="Int32" />
     <Property Name="UnitOnOrder" Type="Int32" />
@@ -190,15 +191,15 @@
     <Property Name="ImageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="AltText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="AddBadge" Type="Boolean" />
-    <Property Name="OfferTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="OfferBadgeClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ShortDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="LongDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Picture1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="Picture2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="Picture3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="Picture4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="OfferTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OfferBadgeClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ShortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Picture2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Picture3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Picture4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
     <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
     <NavigationProperty Name="SubCategory" Relationship="Self.FK_Products_SubCategory" FromRole="Products" ToRole="SubCategory" />
@@ -635,5 +636,15 @@
       <End Role="Products" EntitySet="Products" />
       <End Role="Wishlist" EntitySet="Wishlists" />
     </AssociationSet>
+    <EntitySet Name="Mails" EntityType="KahreedoModels.Mail" />
   </EntityContainer>
+  <EntityType Name="Mail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pass" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" Nullable="false" />
+  </EntityType>
 </Schema>

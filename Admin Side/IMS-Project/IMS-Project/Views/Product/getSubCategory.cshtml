@@ -1,0 +1,8 @@
+﻿@model List<IMS_Project.Models.SubCategory>
+
+<option value="" >Chọn</option>
+@foreach (var item in Model)
+{
+    <option value="@item.SubCategoryID">@item.Name</option>
+}
+

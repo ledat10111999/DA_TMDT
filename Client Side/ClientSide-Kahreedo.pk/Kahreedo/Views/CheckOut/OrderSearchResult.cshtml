@@ -1,0 +1,38 @@
+﻿@model  List<Khareedo.Models.OrderDetail>
+@functions{
+
+
+
+
+}
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Tên sản phẩm</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Đơn giá</th>
+
+                <th scope="col">Số lượng</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col">Ngày đặt</th>
+                <th scope="col">Thanh toán</th>
+                <th scope="col">Tình trạng giao</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <th scope="row">@item.Product.Name</th>
+                <td><img src="@item.Product.ImageURL" style="width:50px;height:50px" /></td>
+                <td>@(item.UnitPrice)</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalAmount</td>
+                <td>@item.Order.OrderDate</td>
+                <td>@item.Order.isCompleted</td>
+                <td>@(item.Order.DeliveryDate == null?"Đang giao":"Đã giao") </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>

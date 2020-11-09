@@ -51,6 +51,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
       <Private>True</Private>
@@ -58,6 +61,9 @@
     <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -125,11 +131,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -144,6 +145,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="helper\Configuration.cs" />
+    <Compile Include="helper\Logger.cs" />
+    <Compile Include="helper\SendMail.cs" />
     <Compile Include="Models\admin_Employee.cs">
       <DependentUpon>KhareedoDataModel.tt</DependentUpon>
     </Compile>
@@ -176,6 +180,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KhareedoDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mail.cs">
+      <DependentUpon>KhareedoDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
       <DependentUpon>KhareedoDataModel.tt</DependentUpon>
@@ -397,6 +404,8 @@
     <Content Include="Views\Product\ViewDetails.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
     <Content Include="Views\CheckOut\FollowOrder.cshtml" />
+    <Content Include="Views\CheckOut\OrderSearchResult.cshtml" />
+    <Content Include="Views\Account\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@ViewBag.Title - Kahreedo.pk</title>
-
+    <title>@ViewBag.Title </title>
+    <script src="~/Scripts/jquery-2.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     @Styles.Render("~/Content/css")
     <style>
         .page-header {
@@ -15,15 +17,17 @@
             margin: 10px;
             border-bottom: 1px solid #eee;
         }
-        .navbar-inverse .navbar-nav>.active>a{
+
+        .navbar-inverse .navbar-nav > .active > a {
             color: #fff;
             background-color: #337ab7;
         }
+
         .navbar-brand {
-        padding:0;
+            padding: 0;
         }
     </style>
- 
+
 </head>
 <body>
     <div id="wrapper">
@@ -154,19 +158,19 @@
                         <a href="@Url.Action("Index", "Dashboard")"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li class="@(ViewBag.Title == "Order" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Order")"><i class="fa fa-fw fa-shopping-cart"></i> Order</a>
+                        <a href="@Url.Action("Index", "Order")"><i class="fa fa-fw fa-shopping-cart"></i> Đơn đặt hàng</a>
                     </li>
                     <li class="@(ViewBag.Title == "Product" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Product")"><i class="fa fa-fw fa-table"></i> Product</a>
+                        <a href="@Url.Action("Index", "Product")"><i class="fa fa-fw fa-table"></i> Quản lý sảnh phẩm</a>
                     </li>
                     <li class="@(ViewBag.Title == "Supplier" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Supplier")"><i class="fa fa-fw fa-truck"></i> Supplier</a>
+                        <a href="@Url.Action("Index", "Supplier")"><i class="fa fa-fw fa-truck"></i> Nhà cung cấp</a>
                     </li>
                     <li class="@(ViewBag.Title == "Customer" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Customer")"><i class="fa fa-fw fa-male"></i> Customer</a>
+                        <a href="@Url.Action("Index", "Customer")"><i class="fa fa-fw fa-male"></i> Quản lý khách hàng</a>
                     </li>
                     <li class="@(ViewBag.Title == "Employee" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Employee")"><i class="fa fa-fw fa-user"></i>Employee</a>
+                        <a href="@Url.Action("Index", "Employee")"><i class="fa fa-fw fa-user"></i>Quản lý Nhân viên</a>
                     </li>
                     @*<li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
@@ -181,10 +185,10 @@
                     </li>*@
                     
                     <li class="@(ViewBag.Title == "Settings" ? "active" : "")">
-                        <a href="@Url.Action("Index", "Settings")"><i class="fa fa-fw fa-gear"></i>Settings</a>
+                        <a href="@Url.Action("Index", "Settings")"><i class="fa fa-fw fa-gear"></i>Cài đặt</a>
                     </li>
                     <li class="@(ViewBag.Title == "Logout" ? "active" : "")">
-                        <a href="@Url.Action("Logout", "Login")"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                        <a href="@Url.Action("Logout", "Login")"><i class="fa fa-fw fa-sign-out"></i>Đăng xuất</a>
                     </li>
                 </ul>
             </div>
@@ -217,7 +221,7 @@
                 <!-- /.row -->
                 <hr />
                 <footer>
-                    <p>&copy; @DateTime.Now.Year - Design &Aacute; Develop By Zulfiqar Akram</p>
+                    <p>&copy; @DateTime.Now.Year </p>
                 </footer>
             </div>
             <!-- /.container-fluid -->

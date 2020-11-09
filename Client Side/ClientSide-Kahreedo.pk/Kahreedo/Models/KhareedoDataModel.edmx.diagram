@@ -43,6 +43,7 @@
         <AssociationConnector Association="KahreedoModels.FK_RecentlyViews_Products" ManuallyRouted="false" />
         <AssociationConnector Association="KahreedoModels.FK_Review_Products" ManuallyRouted="false" />
         <AssociationConnector Association="KahreedoModels.FK_Wishlist_Products" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KahreedoModels.Mail" Width="1.5" PointX="0.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

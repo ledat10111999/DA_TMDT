@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="KahreedoModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="KahreedoModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="admin_Employee">
           <Key>
             <PropertyRef Name="EmpID" />
@@ -38,7 +38,7 @@
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="50" />
           <Property Name="Picture1" Type="varchar" MaxLength="255" />
           <Property Name="Picture2" Type="varchar" MaxLength="250" />
@@ -74,6 +74,7 @@
           <Property Name="LastLogin" Type="datetime" />
           <Property Name="Created" Type="date" />
           <Property Name="Notes" Type="varchar" MaxLength="250" />
+          <Property Name="ConfirmEmail" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="genMainSlider">
           <Key>
@@ -99,6 +100,15 @@
           <Property Name="OfferTag" Type="varchar" MaxLength="50" />
           <Property Name="Title" Type="varchar" MaxLength="50" />
           <Property Name="isDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -151,23 +161,23 @@
             <PropertyRef Name="PayTypeID" />
           </Key>
           <Property Name="PayTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="500" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="SupplierID" Type="int" Nullable="false" />
           <Property Name="CategoryID" Type="int" Nullable="false" />
           <Property Name="SubCategoryID" Type="int" />
           <Property Name="QuantityPerUnit" Type="varchar" MaxLength="50" />
           <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="OldPrice" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="UnitWeight" Type="varchar" MaxLength="50" />
-          <Property Name="Size" Type="varchar" MaxLength="50" />
+          <Property Name="UnitWeight" Type="nvarchar" MaxLength="50" />
+          <Property Name="Size" Type="nvarchar" MaxLength="50" />
           <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
           <Property Name="UnitInStock" Type="int" />
           <Property Name="UnitOnOrder" Type="int" />
@@ -175,15 +185,15 @@
           <Property Name="ImageURL" Type="varchar" MaxLength="500" />
           <Property Name="AltText" Type="varchar" MaxLength="50" />
           <Property Name="AddBadge" Type="bit" />
-          <Property Name="OfferTitle" Type="varchar" MaxLength="50" />
-          <Property Name="OfferBadgeClass" Type="varchar" MaxLength="50" />
-          <Property Name="ShortDescription" Type="varchar" MaxLength="300" />
-          <Property Name="LongDescription" Type="varchar" MaxLength="2000" />
-          <Property Name="Picture1" Type="varchar" MaxLength="500" />
-          <Property Name="Picture2" Type="varchar" MaxLength="500" />
-          <Property Name="Picture3" Type="varchar" MaxLength="500" />
-          <Property Name="Picture4" Type="varchar" MaxLength="500" />
-          <Property Name="Note" Type="varchar" MaxLength="250" />
+          <Property Name="OfferTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="OfferBadgeClass" Type="nvarchar" MaxLength="500" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="LongDescription" Type="nvarchar(max)" />
+          <Property Name="Picture1" Type="nvarchar" MaxLength="500" />
+          <Property Name="Picture2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Picture3" Type="nvarchar" MaxLength="500" />
+          <Property Name="Picture4" Type="nvarchar" MaxLength="500" />
+          <Property Name="Note" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="RecentlyViews">
           <Key>
@@ -513,6 +523,7 @@
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="genMainSlider" EntityType="Self.genMainSlider" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="genPromoRight" EntityType="Self.genPromoRight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mail" EntityType="Self.Mail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
@@ -603,8 +614,7 @@
             <End Role="Wishlist" EntitySet="Wishlist" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KahreedoModels" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -644,7 +654,7 @@
             <PropertyRef Name="CategoryID" />
           </Key>
           <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Picture1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Picture2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
@@ -687,6 +697,7 @@
           <NavigationProperty Name="RecentlyViews" Relationship="Self.FK_RecentlyViews_Customers" FromRole="Customers" ToRole="RecentlyViews" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_Customers" FromRole="Customers" ToRole="Review" />
           <NavigationProperty Name="Wishlists" Relationship="Self.FK_Wishlist_Customers" FromRole="Customers" ToRole="Wishlist" />
+          <Property Name="ConfirmEmail" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="genMainSlider">
           <Key>
@@ -773,8 +784,8 @@
             <PropertyRef Name="PayTypeID" />
           </Key>
           <Property Name="PayTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Payments" Relationship="Self.FK_Payment_PaymentType" FromRole="PaymentType" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Product">
@@ -782,15 +793,15 @@
             <PropertyRef Name="ProductID" />
           </Key>
           <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SupplierID" Type="Int32" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" Nullable="false" />
           <Property Name="SubCategoryID" Type="Int32" />
           <Property Name="QuantityPerUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="OldPrice" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UnitWeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Discount" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="UnitInStock" Type="Int32" />
           <Property Name="UnitOnOrder" Type="Int32" />
@@ -798,15 +809,15 @@
           <Property Name="ImageURL" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="AltText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="AddBadge" Type="Boolean" />
-          <Property Name="OfferTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="OfferBadgeClass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ShortDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="LongDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Picture1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Picture2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Picture3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Picture4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OfferTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OfferBadgeClass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LongDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Picture1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Picture2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Picture3" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Picture4" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetails_Products" FromRole="Products" ToRole="OrderDetails" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK_Products_SubCategory" FromRole="Products" ToRole="SubCategory" />
@@ -1243,7 +1254,17 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Wishlist" EntitySet="Wishlists" />
           </AssociationSet>
+          <EntitySet Name="Mails" EntityType="KahreedoModels.Mail" />
         </EntityContainer>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pass" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1294,6 +1315,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="KahreedoModels.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="ConfirmEmail" ColumnName="ConfirmEmail" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="First_Name" ColumnName="First Name" />
                 <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
@@ -1538,6 +1560,16 @@
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="ProductID" ColumnName="ProductID" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="KahreedoModels.Mail">
+              <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

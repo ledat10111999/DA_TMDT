@@ -13,8 +13,8 @@
                         <div class="col-md-6">
                             <div class="aa-myaccount-login">
                                 <h4>Login</h4>
-                               
-                            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "aa-login-form" }))
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "aa-login-form" }))
                                 {
                                     <label for="">Username or Email address<span>*</span></label>
                                     <input name="UserName" type="text" required placeholder="Username">
@@ -23,14 +23,14 @@
                                     <button type="submit" class="aa-browse-btn">Login</button>
                                     <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
                                     <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
-                            }
-                                
+                                }
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="aa-myaccount-register">
                                 <h4>Register</h4>
-
+                                @Html.ValidationMessage("Register", new { @class = "text-danger" })
                                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "aa-login-form" }))
                                 {
                                     <label for="">First Name<span>*</span></label>

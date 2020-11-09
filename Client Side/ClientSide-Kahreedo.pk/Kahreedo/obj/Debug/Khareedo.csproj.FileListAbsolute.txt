@@ -64,3 +64,5 @@ C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSid
 C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSide-Kahreedo.pk\Kahreedo\obj\Debug\Khareedo.dll
 C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSide-Kahreedo.pk\Kahreedo\obj\Debug\Khareedo.pdb
 C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSide-Kahreedo.pk\Kahreedo\obj\Debug\Khareedo.csprojAssemblyReference.cache
+C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSide-Kahreedo.pk\Kahreedo\bin\PayPal.dll
+C:\Users\Admin\Documents\GitHub\WebEcom\E-Commerce-Website\Client Side\ClientSide-Kahreedo.pk\Kahreedo\bin\PayPal.xml

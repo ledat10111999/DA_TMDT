@@ -44,5 +44,6 @@ namespace Khareedo.Models
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<Mail> Mails { get; set; }
     }
 }

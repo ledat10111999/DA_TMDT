@@ -45,6 +45,7 @@
     <EntitySetMapping Name="Customers">
       <EntityTypeMapping TypeName="KahreedoModels.Customer">
         <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="ConfirmEmail" ColumnName="ConfirmEmail" />
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="First_Name" ColumnName="First Name" />
           <ScalarProperty Name="Last_Name" ColumnName="Last Name" />
@@ -289,6 +290,16 @@
           <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="isActive" ColumnName="isActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mails">
+      <EntityTypeMapping TypeName="KahreedoModels.Mail">
+        <MappingFragment StoreEntitySet="Mail">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Pass" ColumnName="Pass" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

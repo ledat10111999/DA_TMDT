@@ -48,6 +48,7 @@ namespace Khareedo.Models
         public Nullable<System.DateTime> LastLogin { get; set; }
         public Nullable<System.DateTime> Created { get; set; }
         public string Notes { get; set; }
+        public bool ConfirmEmail { get; set; }
     
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<RecentlyView> RecentlyViews { get; set; }

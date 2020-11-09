@@ -33,7 +33,7 @@
       <PropertyRef Name="CategoryID" />
     </Key>
     <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="50" />
     <Property Name="Picture1" Type="varchar" MaxLength="255" />
     <Property Name="Picture2" Type="varchar" MaxLength="250" />
@@ -69,6 +69,7 @@
     <Property Name="LastLogin" Type="datetime" />
     <Property Name="Created" Type="date" />
     <Property Name="Notes" Type="varchar" MaxLength="250" />
+    <Property Name="ConfirmEmail" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="genMainSlider">
     <Key>
@@ -94,6 +95,15 @@
     <Property Name="OfferTag" Type="varchar" MaxLength="50" />
     <Property Name="Title" Type="varchar" MaxLength="50" />
     <Property Name="isDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="Mail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Pass" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Order">
     <Key>
@@ -146,23 +156,23 @@
       <PropertyRef Name="PayTypeID" />
     </Key>
     <Property Name="PayTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TypeName" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="Products">
     <Key>
       <PropertyRef Name="ProductID" />
     </Key>
     <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="SupplierID" Type="int" Nullable="false" />
     <Property Name="CategoryID" Type="int" Nullable="false" />
     <Property Name="SubCategoryID" Type="int" />
     <Property Name="QuantityPerUnit" Type="varchar" MaxLength="50" />
     <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" Nullable="false" />
     <Property Name="OldPrice" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="UnitWeight" Type="varchar" MaxLength="50" />
-    <Property Name="Size" Type="varchar" MaxLength="50" />
+    <Property Name="UnitWeight" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
     <Property Name="Discount" Type="decimal" Precision="18" Scale="0" />
     <Property Name="UnitInStock" Type="int" />
     <Property Name="UnitOnOrder" Type="int" />
@@ -170,15 +180,15 @@
     <Property Name="ImageURL" Type="varchar" MaxLength="500" />
     <Property Name="AltText" Type="varchar" MaxLength="50" />
     <Property Name="AddBadge" Type="bit" />
-    <Property Name="OfferTitle" Type="varchar" MaxLength="50" />
-    <Property Name="OfferBadgeClass" Type="varchar" MaxLength="50" />
-    <Property Name="ShortDescription" Type="varchar" MaxLength="300" />
-    <Property Name="LongDescription" Type="varchar" MaxLength="2000" />
-    <Property Name="Picture1" Type="varchar" MaxLength="500" />
-    <Property Name="Picture2" Type="varchar" MaxLength="500" />
-    <Property Name="Picture3" Type="varchar" MaxLength="500" />
-    <Property Name="Picture4" Type="varchar" MaxLength="500" />
-    <Property Name="Note" Type="varchar" MaxLength="250" />
+    <Property Name="OfferTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="OfferBadgeClass" Type="nvarchar" MaxLength="500" />
+    <Property Name="ShortDescription" Type="nvarchar" MaxLength="50" />
+    <Property Name="LongDescription" Type="nvarchar(max)" />
+    <Property Name="Picture1" Type="nvarchar" MaxLength="500" />
+    <Property Name="Picture2" Type="nvarchar" MaxLength="500" />
+    <Property Name="Picture3" Type="nvarchar" MaxLength="500" />
+    <Property Name="Picture4" Type="nvarchar" MaxLength="500" />
+    <Property Name="Note" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="RecentlyViews">
     <Key>
@@ -508,6 +518,7 @@
     <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="genMainSlider" EntityType="Self.genMainSlider" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="genPromoRight" EntityType="Self.genPromoRight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mail" EntityType="Self.Mail" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />

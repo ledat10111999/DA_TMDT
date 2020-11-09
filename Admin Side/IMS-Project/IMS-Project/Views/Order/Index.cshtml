@@ -11,25 +11,25 @@
             @Html.DisplayNameFor(model => model.OrderID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.CustomerID)
+            @Html.DisplayName("Mã KH")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Payment.PaymentID)
+            @Html.DisplayName("Phương thức TT")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShippingDetail.ShippingID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Discount)
+            @Html.DisplayName("Khuyến mãi")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Taxes)
+            @Html.DisplayName("Thuế")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
+            @Html.DisplayName("Tổng")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.OrderDate)
+            @Html.DisplayName("Ngày đặt")
         </th>        
               
         <th></th>
@@ -44,7 +44,7 @@
             @Html.DisplayFor(modelItem => item.Customer.CustomerID)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Payment.PaymentID)
+            @Html.DisplayFor(modelItem => item.Payment.PaymentType.TypeName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ShippingDetail.ShippingID)

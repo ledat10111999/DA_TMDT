@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -28,38 +29,64 @@ namespace IMS_Project.Controllers
         {
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName");
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "Name");
-            ViewBag.SubCategoryID = new SelectList(db.SubCategories, "SubCategoryID", "Name");
+            //ViewBag.SubCategoryID = new SelectList(db.SubCategories, "SubCategoryID", "Name");
 
+        }
+        public List<string> uploadImage(HttpPostedFileBase[] files)
+        {
+            List<string> listImg = new List<string>();
+            foreach (HttpPostedFileBase img in files)
+            {
+                var InputFileName = DateTime.Now.Millisecond.ToString() + Path.GetFileName(img.FileName);
+                var serverSavePath = Path.Combine(Server.MapPath("~/UploadedFiles/") + InputFileName);
+                img.SaveAs(serverSavePath);
+                listImg.Add("/UploadedFiles/"+InputFileName);
+            }
+            return listImg;
         }
 
         [HttpPost]
-        public ActionResult Create(Product prod)
+        public ActionResult getSubCategory(int id)
+        {
+            var list = db.SubCategories.Where(c => c.CategoryID == id).ToList();
+            return PartialView(list);
+        }
+
+
+        [ValidateInput(false)]
+        [HttpPost]
+        public ActionResult Create(IMS_Project.ViewModel.CreateProduct prod)
         {
             if (ModelState.IsValid)
             {
-                //foreach (var file in Picture1)
-                //{
-                //    if (file != null || file.ContentLength > 0)
-                //    {
-                //        string ext = System.IO.Path.GetExtension(file.FileName);
-                //        if (ext == ".png" || ext == ".jpg" || ext == ".jpeg")
-                //        {
-                //            file.SaveAs(Path.Combine(Server.MapPath("/Content/Images/large"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
-
-                //            var medImg= Images.ResizeImage(Image.FromFile(file.FileName), 250, 300);
-                //            medImg.Save(Path.Combine(Server.MapPath("/Content/Images/medium"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
-                            
-
-                //            var smImg = Images.ResizeImage(Image.FromFile(file.FileName), 45, 55);
-                //            smImg.Save(Path.Combine(Server.MapPath("/Content/Images/small"), Guid.NewGuid() + Path.GetExtension(file.FileName)));
-                        
-                //        }
-                //    }
-                //    db.Products.Add(prod);
-                //    db.SaveChanges();
-                //    return RedirectToAction("Index", "Product");
-                //}
-                db.Products.Add(prod);
+                List<string> listimg = uploadImage(prod.image);
+                Product products = new Product()
+                {
+                    AddBadge = prod.AddBadge,
+                    CategoryID = prod.CategoryID,
+                    Discount = prod.Discount,
+                    ImageURL = listimg[0],
+                    LongDescription = prod.LongDescription,
+                    Name = prod.Name,
+                    Note = prod.Note,
+                    OfferBadgeClass = prod.OfferBadgeClass,
+                    UnitPrice = prod.UnitPrice,
+                    OldPrice = prod.OldPrice,
+                    AltText = prod.AltText,
+                    SubCategoryID = prod.SubCategoryID,
+                    SupplierID = prod.SupplierID,
+                    UnitWeight = prod.UnitWeight,
+                    OfferTitle = prod.OfferTitle,
+                    QuantityPerUnit = prod.QuantityPerUnit,
+                    OrderDetails = prod.OrderDetails,
+                    Size = prod.Size,
+                    ProductAvailable = prod.ProductAvailable,
+                    UnitInStock = prod.UnitInStock,
+                    ShortDescription = prod.ShortDescription,
+                    UnitOnOrder = prod.UnitOnOrder,
+                    
+                };
+                db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Product");
             }
@@ -82,6 +109,7 @@ namespace IMS_Project.Controllers
         }
 
         //Post Edit
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Edit(Product prod)
         {

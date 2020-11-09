@@ -21,7 +21,7 @@
 </head>
 <body>
     <div class="container">
-        @using (Html.BeginForm("Login", "admin_Login", FormMethod.Post, new { @id = "loginForm" }))
+        @using (Html.BeginForm("Index", "admin_Login", FormMethod.Post, new { @id = "loginForm" }))
         { 
             @Html.ValidationSummary(true)
             @Html.AntiForgeryToken()

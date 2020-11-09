@@ -14,27 +14,31 @@ namespace IMS_Project.Controllers
         public ActionResult Index()
         {
             return View();
-        }        
-
+        }
         [HttpPost]
-        public ActionResult Login(admin_Login login)
+        public ActionResult Index(admin_Login login)
         {
             if (ModelState.IsValid)
             {
                 var model = (from m in db.admin_Login
                              where m.UserName == login.UserName && m.Password == login.Password
-                            select m).Any();
+                             select m).Any();
                 if (model)
-                {                 
-                    var loginInfo = db.admin_Login.Where(x=>x.UserName==login.UserName && x.Password==login.Password).FirstOrDefault();
+                {
+                    var loginInfo = db.admin_Login.Where(x => x.UserName == login.UserName && x.Password == login.Password).FirstOrDefault();
 
                     Session["username"] = loginInfo.UserName;
                     TemData.EmpID = loginInfo.EmpID;
-                   return RedirectToAction("Index", "Dashboard");
-                }       
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                ModelState.AddModelError("", "Tài khoản hoặc mật khẩu không đúng");
             }
-            return View("Index");
+           
+            return View(login);
         }
+
+      
+      
         public ActionResult Logout()
         {
             Session.Clear();
