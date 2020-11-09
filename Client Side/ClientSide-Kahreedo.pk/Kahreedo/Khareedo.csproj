@@ -24,6 +24,8 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -239,6 +241,7 @@
     <Content Include="Content\css\theme-color\yellow-theme.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\1200x75---iPhone12-v3.png" />
     <Content Include="Content\img\close-icon.png" />
     <Content Include="Content\img\electronics\electronic-1.png" />
     <Content Include="Content\img\electronics\electronic-2.png" />
@@ -259,13 +262,6 @@
     <Content Include="Content\img\flag\french.jpg" />
     <Content Include="Content\img\logo.jpg" />
     <Content Include="Content\img\man-small-1.jpg" />
-    <Content Include="Content\img\man\polo-shirt-1.png" />
-    <Content Include="Content\img\man\polo-shirt-2.png" />
-    <Content Include="Content\img\man\polo-shirt-3.png" />
-    <Content Include="Content\img\man\polo-shirt-4.png" />
-    <Content Include="Content\img\man\polo-shirt-5.png" />
-    <Content Include="Content\img\man\polo-shirt-6.png" />
-    <Content Include="Content\img\man\t-shirt-1.png" />
     <Content Include="Content\img\paypal.jpg" />
     <Content Include="Content\img\promo-banner-1.jpg" />
     <Content Include="Content\img\promo-banner-2.jpg" />
@@ -277,19 +273,18 @@
     <Content Include="Content\img\slider\3.jpg" />
     <Content Include="Content\img\slider\4.jpg" />
     <Content Include="Content\img\slider\5.jpg" />
+    <Content Include="Content\img\slider\800-300-800x300-1.png" />
     <Content Include="Content\img\slider\ajax-loader.gif" />
     <Content Include="Content\img\slider\bt-next%402x.png" />
     <Content Include="Content\img\slider\bt-next.png" />
     <Content Include="Content\img\slider\bt-prev%402x.png" />
     <Content Include="Content\img\slider\bt-prev.png" />
-    <Content Include="Content\img\sports\sport-1.png" />
-    <Content Include="Content\img\sports\sport-2.png" />
-    <Content Include="Content\img\sports\sport-3.png" />
-    <Content Include="Content\img\sports\sport-4.png" />
-    <Content Include="Content\img\sports\sport-5.png" />
-    <Content Include="Content\img\sports\sport-6.png" />
-    <Content Include="Content\img\sports\sport-7.png" />
-    <Content Include="Content\img\sports\sport-8.png" />
+    <Content Include="Content\img\slider\iphone-12-800-300-800x300-3.png" />
+    <Content Include="Content\img\slider\Normal-Note20-800-300-800x300-1.png" />
+    <Content Include="Content\img\Surface-Go.png" />
+    <Content Include="Content\img\surface-laptop.png" />
+    <Content Include="Content\img\view-slider\800-300-800x300-1.png" />
+    <Content Include="Content\img\view-slider\iphone-12-800-300-800x300-3.png" />
     <Content Include="Content\img\view-slider\large\polo-shirt-1.png" />
     <Content Include="Content\img\view-slider\large\polo-shirt-2.png" />
     <Content Include="Content\img\view-slider\large\polo-shirt-3.png" />
@@ -299,19 +294,14 @@
     <Content Include="Content\img\view-slider\medium\polo-shirt-2.png" />
     <Content Include="Content\img\view-slider\medium\polo-shirt-3.png" />
     <Content Include="Content\img\view-slider\medium\polo-shirt-4.png" />
+    <Content Include="Content\img\view-slider\Normal-Note20-800-300-800x300-1.png" />
     <Content Include="Content\img\view-slider\thumbnail\polo-shirt-1.png" />
     <Content Include="Content\img\view-slider\thumbnail\polo-shirt-2.png" />
     <Content Include="Content\img\view-slider\thumbnail\polo-shirt-3.png" />
     <Content Include="Content\img\view-slider\thumbnail\polo-shirt-4.png" />
     <Content Include="Content\img\woman-small-1.jpg" />
     <Content Include="Content\img\woman-small-2.jpg" />
-    <Content Include="Content\img\women\girl-1.png" />
-    <Content Include="Content\img\women\girl-2.png" />
-    <Content Include="Content\img\women\girl-3.png" />
-    <Content Include="Content\img\women\girl-4.png" />
-    <Content Include="Content\img\women\girl-5.png" />
-    <Content Include="Content\img\women\girl-6.png" />
-    <Content Include="Content\img\women\girl-7.png" />
+    <Content Include="Content\img\word-of-mouth-marketing-1080x675.jpg" />
     <Content Include="Content\Intellisence\js\jquery-1.10.2.min.js" />
     <Content Include="Content\Intellisence\css\jquery-ui.min.css" />
     <Content Include="Content\Intellisence\js\jquery-ui.min.js" />
@@ -406,9 +396,11 @@
     <Content Include="Views\Shared\_Cartbox.cshtml" />
     <Content Include="Views\Product\ViewDetails.cshtml" />
     <Content Include="Views\Product\Products.cshtml" />
+    <Content Include="Views\CheckOut\FollowOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedFiles\" />
     <Folder Include="Views\LoadData\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>

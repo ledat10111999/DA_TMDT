@@ -6,11 +6,37 @@ using System.Web.Mvc;
 using Khareedo.Models;
 using PagedList;
 using PagedList.Mvc;
-
+using System.Text.RegularExpressions;
+using System.Text;
 namespace Khareedo.Controllers
 {
     public class ProductController : Controller
     {
+         public static string ToUrlSlug(string value)
+    {
+
+        //First to lower case
+        value = value.ToLowerInvariant();
+
+        //Remove all accents
+        var bytes = Encoding.GetEncoding("Cyrillic").GetBytes(value);
+
+        value = Encoding.ASCII.GetString(bytes);
+
+        //Replace spaces
+        value = Regex.Replace(value, @"\s", "-", RegexOptions.Compiled);
+
+        //Remove invalid chars
+        value = Regex.Replace(value, @"[^\w\s\p{Pd}]", "", RegexOptions.Compiled);
+
+        //Trim dashes from end
+        value = value.Trim('-', '_');
+
+        //Replace double occurences of - or \_
+        value = Regex.Replace(value, @"([-_]){2,}", "$1", RegexOptions.Compiled);
+
+        return value;
+    }
         KhareedoEntities db = new KhareedoEntities();
 
 
@@ -40,7 +66,7 @@ namespace Khareedo.Controllers
 
             List<TopSoldProduct> topSoldProds = new List<TopSoldProduct>();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < topSoldProds.Count; i++)
             {
                 topSoldProds.Add(new TopSoldProduct()
                 {
@@ -173,14 +199,14 @@ namespace Khareedo.Controllers
         }
 
         //GET PRODUCTS BY CATEGORY
-        public ActionResult GetProductsByCategory(string categoryName, int? page)
+        public ActionResult GetProductsByCategory(string subCategory,string categoryName, int? page)
         {
             ViewBag.Categories = db.Categories.Select(x => x.Name).ToList();
             ViewBag.TopRatedProducts = TopSoldProducts();
          
             ViewBag.RecentViewsProducts = RecentViewProducts();
 
-            var prods = db.Products.Where(x => x.Category.Name == categoryName).ToList();
+            var prods = db.Products.Where(x => x.SubCategory.Name == subCategory &&  x.Category.Name.ToLower() == categoryName.ToLower()).ToList();
             return View("Products", prods.ToPagedList(page ?? 1, 9));
         }
 
@@ -195,7 +221,7 @@ namespace Khareedo.Controllers
             List<Product> products;
             if (!string.IsNullOrEmpty(product))
             {
-                products = db.Products.Where(x => x.Name.StartsWith(product)).ToList();
+                products = db.Products.Where(x => x.Name.Contains(product)).ToList();
             }
             else
             {

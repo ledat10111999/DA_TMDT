@@ -54,14 +54,14 @@
                                     </div>
 
                                     <div class="aa-price-block">
-                                        <span class="aa-product-view-price">Rs. <b> @Model.UnitPrice</b></span>
+                                        <span class="aa-product-view-price"> <b> @Model.UnitPrice.ToString("##,###") VNĐ</b></span>
                                         @if (Model.UnitInStock > 0)
                                         {
-                                            <p class="aa-product-avilability"><span style="color:white ;background-color:green">In Stock (@Model.UnitInStock)</span></p>
+                                            <p class="aa-product-avilability"><span style="color:white ;background-color:green">Còn hàng (@Model.UnitInStock)</span></p>
                                         }
                                         else
                                         {
-                                            <p class="aa-product-avilability"><span style="color:white;background-color:red">Out of Stock</span></p>
+                                            <p class="aa-product-avilability"><span style="color:white;background-color:red">Hết hàng</span></p>
                                         }
                                         @{
                                             TempData["returnURL"] = Request.RawUrl;   
@@ -69,7 +69,7 @@
                                         
                                        
                                     </div>
-                                    <p>@Model.ShortDescription</p>
+                                    <p>@Model.ShortDescription </p>
                                     @*<h4>Size</h4>
                                     <div class="aa-prod-view-size">
                                         <a href="#">S</a>
@@ -86,7 +86,7 @@
                                         <a href="#" class="aa-color-white"></a>
                                     </div>*@
                                     <div class="aa-prod-quantity">
-                                        <h4>Quantity:</h4>
+                                        <h4>Số lượng:</h4>
                                         <form action="">
                                             <input type="number" name="quantity" min="1" max="99" maxlength="2" value="1" />                                            
                                         </form>                                       
@@ -116,16 +116,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content">
                             <div class="tab-pane fade in active" id="description">
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <ul>
-                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod, culpa!</li>
-                                    <li>Lorem ipsum dolor sit amet.</li>
-                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
-                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor qui eius esse!</li>
-                                    <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam, modi!</li>
-                                </ul>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, iusto earum voluptates autem esse molestiae ipsam, atque quam amet similique ducimus aliquid voluptate perferendis, distinctio!</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis ea, voluptas! Aliquam facere quas cumque rerum dolore impedit, dicta ducimus repellat dignissimos, fugiat, minima quaerat necessitatibus? Optio adipisci ab, obcaecati, porro unde accusantium facilis repudiandae.</p>
+                                @Html.Raw(Model.LongDescription)
                             </div>
                             <div class="tab-pane fade " id="review">
                                 <div class="aa-product-review-area">
@@ -210,7 +201,7 @@
                     <br /><br />
                     <!-- Related product -->
                     <div class="aa-product-related-item">
-                        <h3>Related Products</h3>
+                        <h3>Sản phẩm liên quan</h3>
                         <ul class="aa-product-catg aa-related-item-slider">
                             <!-- start single product item -->
 

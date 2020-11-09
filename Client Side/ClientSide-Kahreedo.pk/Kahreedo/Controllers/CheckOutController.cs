@@ -89,6 +89,11 @@ namespace Khareedo.Controllers
                 return RedirectToAction("Index","ThankYou");
             
         }
+        // Theo dõi đơn hàng
+        public ActionResult FollowOrder()
+        {
+            return View();
+        }
 
     }
 }
